@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content text-center>
+  <div class="success-background" padding>
+    <ion-avatar (click)="takePhoto()">
+      <img [src]="userImage" *ngIf="!photo" />
+      <img [src]="photo" *ngIf="photo" />
+    </ion-avatar>
+    <h1>{{ user.nombre + user.apellido }}</h1>
+    <h2>{{ user.email }}</h2>
+    <ion-grid>
+      <ion-row aling-items-center text-center class="row-header">
+        <ion-col>140</ion-col>
+        <ion-col>2k</ion-col>
+        <ion-col>500</ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row aling-items-center text-center>
+        <ion-col>Artist</ion-col>
+        <ion-col>Followers</ion-col>
+        <ion-col>Songs</ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

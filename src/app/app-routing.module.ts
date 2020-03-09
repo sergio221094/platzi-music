@@ -1,9 +1,29 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { IntroGuard } from "./guards/intro.guard";
+import { LoginGuard } from "./guards/login.guard";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+  { path: "", redirectTo: "menu", pathMatch: "full" },
+  { path: "intro", loadChildren: "./intro/intro.module#IntroPageModule" },
+  { path: "login", loadChildren: "./login/login.module#LoginPageModule" },
+  {
+    path: "register",
+    loadChildren: "./register/register.module#RegisterPageModule"
+  },
+  {
+    path: "menu",
+    loadChildren: "./menu/menu.module#MenuPageModule",
+    canActivate: [LoginGuard, IntroGuard]
+  },
+  {
+    path: "songs-modal",
+    loadChildren: "./songs-modal/songs-modal.module#SongsModalPageModule"
+  },
+  {
+    path: "album-modal",
+    loadChildren: "./album-modal/album-modal.module#AlbumModalPageModule"
+  }
 ];
 
 @NgModule({
@@ -12,4 +32,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
